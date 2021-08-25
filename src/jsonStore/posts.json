@@ -1,0 +1,32 @@
+[
+    {
+        "pid": 12,
+        "uid": 100,
+        "content": "alpha's post",
+        "likes": 2,
+        "lusers": [
+            102,
+            101
+        ]
+    },
+    {
+        "pid": 13,
+        "uid": 101,
+        "content": "beta's post",
+        "likes": 2,
+        "lusers": [
+            100,
+            102
+        ]
+    },
+    {
+        "pid": 14,
+        "uid": 102,
+        "content": "gamma's post",
+        "likes": 2,
+        "lusers": [
+            100,
+            102
+        ]
+    }
+]

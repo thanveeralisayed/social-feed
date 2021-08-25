@@ -7,6 +7,12 @@
         "lusers": [
             102,
             101
+        ],
+        "comments":[
+            {
+                "uid":102,
+                "content":"Nice photo"
+            }
         ]
     },
     {
@@ -17,6 +23,12 @@
         "lusers": [
             100,
             102
+        ],
+        "comments":[
+            {
+                "uid":101,
+                "content":"Prety good"
+            }
         ]
     },
     {
@@ -27,6 +39,12 @@
         "lusers": [
             100,
             102
+        ],
+        "comments":[
+            {
+                "uid":100,
+                "content":"Looking nice"
+            }
         ]
     }
 ]

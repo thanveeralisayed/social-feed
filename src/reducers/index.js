@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import likeReducer from "./likeReducer";
+import Reducer from "./Reducer";
 
 
 export default combineReducers({
-    posts:likeReducer
+    posts:Reducer
 })

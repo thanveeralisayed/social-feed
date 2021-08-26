@@ -30,7 +30,7 @@ function App() {
               <Route exact path="/">
                 <Feed />
               </Route>
-              <Route path="/profile">
+              <Route path="/profile/:uid">
                 <Profile />
               </Route>
             </Switch>

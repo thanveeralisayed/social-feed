@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Bio = () => {
+const Following = () => {
     return (
         <div>
-            bio
+           followings 
         </div>
     )
 }
 
-export default Bio
+export default Following

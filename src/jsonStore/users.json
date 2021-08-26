@@ -1,18 +1,26 @@
 [
     {
         "uid": 100,
-        "name": "alpha"
+        "name": "Jim",
+        "followers":[101,102],
+        "following":[101]
     },
     {
         "uid": 101,
-        "name": "beta"
+        "name": "Jack",
+        "followers":[100,102],
+        "following":[100]
     },
     {
         "uid": 102,
-        "name": "gamma"
+        "name": "Job",
+        "followers":[100,101],
+        "following":[101]
     },
     {
         "uid": 113,
-        "name": "Jane Doe"
+        "name": "Jane Doe",
+        "followers":[],
+        "following":[]
     }
 ]

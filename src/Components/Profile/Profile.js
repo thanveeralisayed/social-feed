@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams 
 import Bio from './Bio/Bio';
 import { UserContext } from '../../UserContext';
 import { useContext } from 'react';
-import Following from './Following/Following';
-import Followers from '../Followers/Followers';
+import Follow from '../Follow/Follow';
 
 const Profile = () => {
 
@@ -59,11 +58,11 @@ const Profile = () => {
                         </Route>
 
                         <Route path={`${path}/followers`}>
-                            <Followers />
+                            <Follow followers = {user.followers} />
                         </Route>
 
                         <Route path={`${path}/following`}>
-                            <Following />
+                            <Follow following = {user.following} />
                         </Route>
                     </div>
                 </Switch>

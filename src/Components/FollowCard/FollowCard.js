@@ -27,8 +27,6 @@ const FollowCard = ({ person }) => {
                         <Link to={`/profile/${user.uid}`}>
                             <div><a className="name" href="javascript:void(0)">{user.name}</a></div>
                         </Link>
-
-
                     </div>
                 </div>
             </li>

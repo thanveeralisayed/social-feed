@@ -17,6 +17,7 @@ const Feed = () => {
         setPosts([...postsArray]);
     }, [postsArray])
 
+
     
 
     const likeButtonHandler = (pid,uid) => {
@@ -28,8 +29,8 @@ const Feed = () => {
 
     return (
         <div className="container">
-            {posts.map((post)=>
-                <Post likeButtonHandler={likeButtonHandler} post={post} />
+            {posts.map((post,i)=>
+                <Post key={i} likeButtonHandler={likeButtonHandler} post={post} />
             )}
         </div>
     )

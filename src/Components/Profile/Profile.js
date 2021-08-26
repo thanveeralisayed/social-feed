@@ -1,20 +1,28 @@
 import React from 'react';
 import './Profile.css';
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from 'react-router-dom';
-import Bio from './Bio/Bio';
+import Posts from './Posts/Posts';
 import { UserContext } from '../../UserContext';
 import { useContext } from 'react';
 import Follow from '../Follow/Follow';
+import { useSelector } from 'react-redux';
+
 
 const Profile = () => {
-
+    const posts = useSelector(state=>state.posts);
     let { path, url } = useRouteMatch();
     const { uid } = useParams();
     const { users } = useContext(UserContext);
     const user = users.find(user => user.uid === parseInt(uid));
 
-    console.log(typeof (uid));
-    console.log(user);
+    const userposts = [];
+    posts.map(post => {
+        if (post.uid === parseInt(uid)) {
+          userposts.push(post);
+        }
+    })
+
+   
 
     return (
         <div className="container">
@@ -27,48 +35,48 @@ const Profile = () => {
                             <div className="d-flex flex-row justify-content-between mt-4 pr-4">
 
                                 <Link to={`${url}`}>
-                                    <div className="d-flex flex-column align-items-center"><small className="text-muted">Bio</small>
-                                        <h6></h6>
+                                    <div className="d-flex flex-column align-items-center"><small className="text-muted">Posts</small>
+                                        <h6>{userposts.length}</h6>
                                     </div>
                                 </Link>
 
                                 <Link to={`${url}/followers`}>
                                     <div className="d-flex flex-column align-items-center"><small className="text-muted">Followers</small>
-                                        <h6>2M</h6>
+                                        <h6>{user.followers.length}</h6>
                                     </div>
                                 </Link>
 
-                                    <Link to={`${url}/following`}>
-                                        <div className="d-flex flex-column align-items-center"><small className="text-muted">Following</small>
-                                            <h6>01</h6>
-                                        </div>
-                                    </Link>
+                                <Link to={`${url}/following`}>
+                                    <div className="d-flex flex-column align-items-center"><small className="text-muted">Following</small>
+                                        <h6>{user.following.length}</h6>
+                                    </div>
+                                </Link>
 
-                            </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
-                <Switch>
-                    <div className="row">
-                        <Route exact path={`${path}`}>
-                            <Bio />
-                        </Route>
-
-                        <Route path={`${path}/followers`}>
-                            <Follow followers = {user.followers} />
-                        </Route>
-
-                        <Route path={`${path}/following`}>
-                            <Follow following = {user.following} />
-                        </Route>
-                    </div>
-                </Switch>
-
             </div>
-            )
+
+            <Switch>
+                <div className="row">
+                    <Route exact path={`${path}`}>
+                        <Posts/>
+                    </Route>
+
+                    <Route path={`${path}/followers`}>
+                        <Follow followers={user.followers} />
+                    </Route>
+
+                    <Route path={`${path}/following`}>
+                        <Follow following={user.following} />
+                    </Route>
+                </div>
+            </Switch>
+
+        </div>
+    )
 }
 
-            export default Profile
+export default Profile

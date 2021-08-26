@@ -5,6 +5,7 @@ import { UserContext } from '../../UserContext';
 import Comment from '../Comment/Comment';
 import { setComment } from '../../actions';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
 import './Post.css';
 
 
@@ -12,19 +13,26 @@ import './Post.css';
 const Post = ({ post, likeButtonHandler }) => {
     const { users, setUsers, cuser } = useContext(UserContext);
     const [postObject, setPostObject] = useState({});
-    const uid = post.uid;
+    let {uid} = useParams();
+    if (!uid) {
+        uid = post.uid;
+    }
     const cuid = cuser.uid;
     const pid = post.pid;
-    const user = users.find(user => user.uid === uid);
+    const user = users.find(user => user.uid === parseInt(uid));
     const [commentc, setCommentc] = useState('');
 
     const dispatch = useDispatch();
-    const initstate = '';
+   
 
     useEffect(() => {
         setPostObject(post)
     }, [])
 
+   
+    
+   
+    console.log(postObject);
    
 
     const commentBtnHandler = (e) => {
@@ -50,13 +58,13 @@ const Post = ({ post, likeButtonHandler }) => {
                                     <div className="box-tools"> <button type="button" className="btn btn-box-tool" data-toggle="tooltip" title data-original-title="Mark as read"> <i className="fa fa-circle-o" /></button> <button type="button" className="btn btn-box-tool" data-widget="collapse"><i className="fa fa-minus" /> </button> <button type="button" className="btn btn-box-tool" data-widget="remove"><i className="fa fa-times" /></button> </div>
                                 </div>
                                 <div className="box-body"> <img className="img-responsive pad" src="https://i.imgur.com/EAQkLS1.jpg" alt="Photo" />
-                                    <p>{postObject.content}</p> <button type="button" className="btn btn-default btn-xs"><i className="fa fa-share" /> Share</button> <button onClick={() => likeButtonHandler(post.pid, 106)} type="button" className="btn btn-default btn-xs">
-                                        <i className="fa fa-thumbs-o-up" /> {post.lusers.includes(106) ? 'Unlike' : 'Like'}</button> <span className="pull-right text-muted">{post.likes} likes - {postObject.comments ? postObject.comments.length : ''}  {postObject.comments && postObject.comments.length > 1 ? 'comments' : 'comment'}</span>
+                                    <p>{postObject.content}</p> <button type="button" className="btn btn-default btn-xs"><i className="fa fa-share" /> Share</button> <button onClick={() => likeButtonHandler(post.pid, cuid)} type="button" className="btn btn-default btn-xs">
+                                        <i className="fa fa-thumbs-o-up" /> {post.lusers.includes(cuid) ? 'Unlike' : 'Like'}</button> <span className="pull-right text-muted">{post.likes} likes - {postObject.comments ? postObject.comments.length : ''}  {postObject.comments && postObject.comments.length > 1 ? 'comments' : 'comment'}</span>
                                 </div>
                                 <div className="box-footer box-comments">
 
-                                    {postObject.comments ? postObject.comments.map((comment) =>
-                                        <Comment comment={comment} />
+                                    {postObject.comments ? postObject.comments.map((comment,i) =>
+                                        <Comment  key={`${i}cm`} comment={comment} />
                                     ) : ''}
 
                                 </div>

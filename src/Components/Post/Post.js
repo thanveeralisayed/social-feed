@@ -19,17 +19,20 @@ const Post = ({ post, likeButtonHandler }) => {
     const [commentc, setCommentc] = useState('');
 
     const dispatch = useDispatch();
+    const initstate = '';
 
     useEffect(() => {
         setPostObject(post)
     }, [])
 
+   
+
     const commentBtnHandler = (e) => {
         e.preventDefault();
-        dispatch(setComment(pid, cuid, commentc))
-        setPostObject(post);
+        dispatch(setComment(pid, cuid, commentc));
         setCommentc('');
-        console.log(post);
+        setPostObject(post);
+        console.log(commentc);
     }
 
 
@@ -59,7 +62,7 @@ const Post = ({ post, likeButtonHandler }) => {
                                 </div>
                                 <div className="box-footer">
                                     <form action="#" method="post"> <img className="img-responsive img-circle img-sm" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="Alt Text" />
-                                        <div className="img-push"> <input onChange={(e) => setCommentc(e.target.value)} type="text" className="form-control input-sm" placeholder="Press enter to post comment" /> </div>
+                                        <div className="img-push"> <input value={commentc} onChange={(e) => setCommentc(e.target.value)} type="text" className="form-control input-sm" placeholder="Press enter to post comment" /> </div>
                                         <button onClick={(e) => commentBtnHandler(e)} className="mt-2 img-responsive btn-sm btn btn-success">Comment</button>
                                     </form>
                                 </div>
